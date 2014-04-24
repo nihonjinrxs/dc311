@@ -1,5 +1,6 @@
 ﻿set search_path to dc311, public;
 
+create or replace view requests as (
 select 
         id,
         servicerequestid,
@@ -8,23 +9,23 @@ select
         servicecodedescription,
         servicetypecode,
         servicetypecodedescription,
-        to_timestamp(serviceorderdate,'MM/DD/YYYY HH12:MI:SS AM'),
+        to_timestamp(serviceorderdate,'MM/DD/YYYY HH12:MI:SS AM') as serviceorderdate,
         serviceorderstatus,
         servicecallcount,
         agencyabbreviation,
         inspectionflag,
-        to_timestamp(inspectiondate,'MM/DD/YYYY HH12:MI:SS AM'),
+        to_timestamp(inspectiondate,'MM/DD/YYYY HH12:MI:SS AM') as inspectiondate,
         resolution,
-        to_timestamp(resolutiondate,'MM/DD/YYYY HH12:MI:SS AM'),
-        to_timestamp(serviceduedate,'MM/DD/YYYY HH12:MI:SS AM'),
+        to_timestamp(resolutiondate,'MM/DD/YYYY HH12:MI:SS AM') as resolutiondate,
+        to_timestamp(serviceduedate,'MM/DD/YYYY HH12:MI:SS AM') as serviceduedate,
         servicenotes,
         parentservicerequestid,
-        to_timestamp(adddate,'MM/DD/YYYY HH12:MI:SS AM'),
-        to_timestamp(lastmodifieddate,'MM/DD/YYYY HH12:MI:SS AM'),
+        to_timestamp(adddate,'MM/DD/YYYY HH12:MI:SS AM') as adddate,
+        to_timestamp(lastmodifieddate,'MM/DD/YYYY HH12:MI:SS AM') as lastmodifieddate,
         siteaddress,
         latitude,
         longitude,
-        ST_GeographyFromText('SRID=4326;POINT(' || longitude || ' ' || latitude || ')') as lat_long,
+        ST_GeographyFromText('SRID=4326;POINT(' || longitude || ' ' || latitude || ')') as latlong,
         zipcode,
         maraddressrepositoryid,
         dcstataddresskey,
@@ -40,4 +41,4 @@ select
         hotspot2004name,
         servicesourcecode
 from dc311.requests_raw
-limit 500;
+);

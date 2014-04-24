@@ -1,6 +1,7 @@
 ﻿
 create schema if not exists dc311;
 grant all on schema dc311 to ryan;
+CREATE EXTENSION postgis;
 
 drop table if exists dc311.requests_raw;
 create table if not exists dc311.requests_raw (

@@ -3,6 +3,7 @@
  *
  * Note that dc311.requests is roughly 4.3 GB total
  */
+
 SELECT nspname || '.' || relname AS "relation",
     pg_size_pretty(pg_total_relation_size(C.oid)) AS "total_size"
   FROM pg_class C

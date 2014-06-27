@@ -1,6 +1,8 @@
 ﻿set search_path to dc311, public;
 
-create or replace view requests as (
+create extension postgis;
+
+create table requests as (
 select 
         id,
         servicerequestid,
@@ -42,3 +44,4 @@ select
         servicesourcecode
 from dc311.requests_raw
 );
+
